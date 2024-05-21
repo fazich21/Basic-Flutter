@@ -1,0 +1,35 @@
+import 'package:flutter/material.dart';
+import 'package:ride1/cart_page.dart';
+import 'package:ride1/home_page.dart';
+import 'package:ride1/login_page.dart';
+import 'package:ride1/main.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:ride1/pc_games.dart';
+import 'package:ride1/utill/routes.dart';
+import 'package:ride1/utill/widget/pcfinal.dart';
+import 'package:ride1/utill/widget/themes.dart';
+void main(){
+  runApp(Myapp());
+}
+class Myapp extends StatelessWidget {
+  const Myapp({super.key});
+  @override
+  Widget build(BuildContext context) {
+
+    return MaterialApp(
+      themeMode: ThemeMode.light,
+      theme: mytheme.lightTheme(context),
+      darkTheme: mytheme.DarkTheme(context),
+      debugShowCheckedModeBanner: false,
+      initialRoute: Myroute.homeroute,
+      routes: {
+        "/": (context) =>login(),
+       Myroute.homeroute:(context)=> homepage(),
+       Myroute.loginroute:(context)=> login(),
+       Myroute.pcgames:(context)=>pcgames(),
+       Myroute.Cartroute:(context)=>cartpage(),
+        Myroute.Pcfinal:(context)=>pcfinal(),
+      },
+    );
+  }
+}

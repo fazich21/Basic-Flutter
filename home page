@@ -1,0 +1,159 @@
+import 'package:flutter/material.dart';
+import 'package:ride1/models/catlog.dart';
+import 'package:ride1/utill/routes.dart';
+import 'package:ride1/utill/widget/Item_widget.dart';
+import 'package:ride1/utill/widget/drawer.dart';
+import 'package:ride1/utill/widget/themes.dart';
+import 'package:velocity_x/velocity_x.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+class homepage extends StatefulWidget {
+  const homepage({super.key});
+
+  @override
+  State<homepage> createState() => _homepageState();
+}
+
+class _homepageState extends State<homepage> {
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+         bottomNavigationBar: Container(//for navigationbar in bottom
+           color: Colors.white,
+           child: Padding(
+             padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 20.0),
+             child: GNav(
+               backgroundColor: Colors.white,
+               color: Colors.black,
+               activeColor: Colors.white,
+               tabBackgroundColor: Colors.grey.shade700,
+               padding: EdgeInsets.all(17),
+               gap:5,
+               tabs: [
+               GButton(icon: Icons.home,text: "Home",),
+               GButton(icon:Icons.search,text: "Search",),
+               GButton(icon:Icons.favorite,text: "Dil",),
+               GButton(icon:Icons.settings,text: "Setting",)
+             ],
+             ),
+           ),
+         ),
+      body: Stack(
+        children: [
+    // Background Image
+        Positioned.fill(
+         child: Image.asset( 'assets/image/homebackground_image.jpg', // Replace with your image asset
+      fit: BoxFit.cover,width:300 ,height: 300,
+    ),
+    ),
+       Container(
+        padding: Vx.m20,
+        child: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+               header(),
+              SizedBox(
+                height: 30,
+              ),
+            ConstrainedBox(
+            constraints: BoxConstraints(
+              minWidth: double.infinity, // Set the minimum width to take up the available width
+              minHeight: 150.0, // Set the minimum height as needed
+            ),
+              child: ElevatedButton(
+                child: Text("PC Games",style: TextStyle(fontSize: 50,fontWeight: FontWeight.bold,color: Colors.white,),
+                ),
+                onPressed: (){
+                  Navigator.pushNamed(context,Myroute.pcgames,);
+                },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.indigo[400]!,),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                    )
+                  )
+              ),
+          ),
+          ),
+            SizedBox(
+          height: 20,
+        ),
+            ConstrainedBox(
+          constraints: BoxConstraints(
+            minWidth: double.infinity, // Set the minimum width to take up the available width
+            minHeight: 150.0, // Set the minimum height as needed
+          ),
+          child: ElevatedButton(
+            child: Text( "PS 4 & PS 5",
+              style: TextStyle(
+                fontSize: 50,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            onPressed: () {
+              Navigator.pushNamed(context,Myroute.loginroute,);
+            },
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.indigo[400]!),
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+             RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25.0),// Change the color here
+            ),
+          ),
+        ),
+          ),
+            ),
+              SizedBox(
+                height: 20,
+              ),
+              ConstrainedBox(
+                constraints: BoxConstraints(
+                  minWidth: double.infinity, // Set the minimum width to take up the available width
+                  minHeight: 150.0, // Set the minimum height as needed
+                ),
+                child: ElevatedButton(
+                  child: Text( "Gaming Accessories",
+                    style: TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context,Myroute.loginroute,);
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.indigo[400]!),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                         borderRadius: BorderRadius.circular(25.0), // Change the color here
+                  ),
+                ),
+              ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ],
+    ),
+    );
+  }
+}
+class header extends StatelessWidget {
+  const header({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return  Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        "All Categories".text.xl5.bold.color(mytheme.darkbluishColor).make(),
+        "Select of your Choice".text.xl2.make(),
+      ],
+    );
+  }
+}

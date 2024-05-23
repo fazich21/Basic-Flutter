@@ -1,0 +1,108 @@
+mport 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:ride1/models/catlog.dart';
+import 'package:ride1/utill/pc_detail.dart';
+import 'package:ride1/utill/routes.dart';
+import 'package:ride1/utill/widget/Item_widget.dart';
+import 'package:ride1/utill/widget/drawer.dart';
+import 'package:ride1/utill/widget/themes.dart';
+import 'package:velocity_x/velocity_x.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+class pcgames extends StatelessWidget {
+  const pcgames({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: mytheme.CreamColor,
+     floatingActionButton: FloatingActionButton(onPressed: () => Navigator.pushNamed(context, Myroute.Cartroute),
+       backgroundColor: mytheme.darkbluishColor,
+     child: Icon(CupertinoIcons.cart),),
+
+     body: SafeArea(
+       child:  Container(
+         padding: Vx.m20,
+      color: Colors.white,
+      child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          pcheader(),
+          if(Catalogmodel.items != null && Catalogmodel.items.isNotEmpty)
+            Cataloglist().expand()
+          else
+            Center(
+              child: CircularProgressIndicator(),
+            )
+        ],
+      ),
+    ),
+     ),
+    );
+  }
+}
+class pcheader extends StatelessWidget {
+  const pcheader({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return  Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+    "All Games".text.xl5.bold.color(mytheme.darkbluishColor).make(),
+    "Trending top games".text.xl2.make(),
+    ],
+    );
+  }
+}
+class Cataloglist extends StatelessWidget {
+  const Cataloglist({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(shrinkWrap: true,   itemCount: Catalogmodel.items.length,
+    itemBuilder: (context , index){
+      final Catalog = Catalogmodel.items[index];
+      return InkWell(
+        onTap:()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>pcdetail(Catalog: Catalog, key: UniqueKey(),),
+        ),
+        ) ,
+      child: Catalogitem(Catalog: Catalog));
+    }
+    );
+  }
+}
+class Catalogitem extends StatelessWidget {
+  final Item Catalog;
+  const Catalogitem({Key? key,required this.Catalog}): assert(Catalog!=null), super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return VxBox(
+      child: Row(
+        children: [
+          Image.network(Catalog.image).box.rounded.p8.color(mytheme.CreamColor).make().p16().w40(context),
+          Expanded(child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+                 Catalog.name.text.lg.color(Colors.black).bold.make(),
+                 Catalog.desc.text.textStyle(context.captionStyle).make(),
+              ButtonBar(
+                alignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  "\$${Catalog.price}".text.bold.xl.make(),
+                  ElevatedButton(onPressed: () {},
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(mytheme.darkbluishColor)
+                      ),
+                      child: "Buy".text.make())
+                ],
+              )
+            ],
+          )
+          )
+        ],
+      )
+    ).white.roundedLg.square(150).make().py16();
+  }
+}

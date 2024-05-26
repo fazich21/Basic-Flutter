@@ -1,0 +1,75 @@
+import 'package:flutter/material.dart';
+import 'package:ride1/models/cart.dart';
+import 'package:ride1/utill/widget/pcfinal.dart';
+import 'package:ride1/utill/widget/themes.dart';
+import 'package:velocity_x/velocity_x.dart';
+import 'package:ride1/utill/routes.dart';
+
+
+class cartpage extends StatelessWidget {
+  const cartpage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: mytheme.CreamColor,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        title: "Cart".text.make(),
+      ),
+        body: Column(
+          children: [_Cartlist().expand(),Divider(),_CartTotal(),
+    ],
+    ),
+    );
+  }
+}
+class _CartTotal extends StatelessWidget {
+
+  const _CartTotal({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final _cart =CartModel();
+    return SizedBox(
+      height: 200,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          "\$${_cart.totalprice}".text.xl5.make(),
+          30.widthBox,
+          ElevatedButton(onPressed: (){
+            Navigator.pushNamed(context, Myroute.Pcfinal);
+          }, style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(mytheme.darkbluishColor),
+          ),
+            child:"Buy".text.white.make(),
+          ).w20(context),
+        ],
+      ),
+    );
+  }
+}
+class _Cartlist extends StatefulWidget {
+  const _Cartlist({super.key});
+
+  @override
+  State<_Cartlist> createState() => _CartlistState();
+}
+
+class _CartlistState extends State<_Cartlist> {
+  final _cart=CartModel();
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(itemCount: _cart.items?.length,
+      itemBuilder: (context,index)=>ListTile(
+      leading: Icon(Icons.done_all),
+      trailing: IconButton(
+        icon: Icon(Icons.remove_circle_outline),
+        onPressed: (){},
+      ),
+      title: _cart.items[index].name.text.make(),
+    ),
+      );
+  }
+}

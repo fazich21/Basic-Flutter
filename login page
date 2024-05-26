@@ -37,7 +37,7 @@ class _loginState extends State<login> {
            padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 35.0),
            child: Column(children: [
              TextFormField(
-               decoration: InputDecoration(hintText: " User name",
+               decoration: InputDecoration(hintText: " User Name",
                    labelText: "Enter User Name"),
              ),
              TextFormField(

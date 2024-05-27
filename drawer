@@ -32,7 +32,7 @@ class mydrawer extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(CupertinoIcons.mail_solid,color: Colors.white,),
-              title: Text("Email",textScaleFactor: 1.3,
+              title: Text("EMail",textScaleFactor: 1.3,
               style: TextStyle(color: Colors.white,fontStyle: FontStyle.italic),),
             ),
             ListTile(

@@ -18,7 +18,7 @@ class mydrawer extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.indigo[400],
                   ),
-              accountName: Text("Welcome"), accountEmail: Text("fanfafnanfi@gmail.com"),
+              accountName: Text("Welcome"), accountEmail: Text("fanfafnanfasdsadaasdi@gmail.com"),
                 currentAccountPicture: CircleAvatar(
                   //backgroundImage: NetworkImage(imageurl),
                   child: ClipOval(child: Image.asset("assets/image/drawerr_image.jpg",fit: BoxFit.cover,),),

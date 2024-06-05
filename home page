@@ -110,8 +110,8 @@ class _homepageState extends State<homepage> {
               ),
               ConstrainedBox(
                 constraints: BoxConstraints(
-                  minWidth: double.infinity, // Set the minimum width to take up the available width
-                  minHeight: 150.0, // Set the minimum height as needed
+                  minWidth: double.infinity, 
+                  minHeight: 150.0, 
                 ),
                 child: ElevatedButton(
                   child: Text( "Gaming Accessories",
